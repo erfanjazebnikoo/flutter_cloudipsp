@@ -1,8 +1,8 @@
 name: cloudipsp_mobile
 description: Cloudipsp SDK for Mobile(Android, iOS)
-version: 0.0.3
+version: 0.0.4
 author: Maxim Kozenko
-homepage: https://github.com/cloudipsp/flutter-mobile-sdk
+homepage: https://github.com/erfanjazebnikoo/flutter_cloudipsp
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,15 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: "^2.0.10"
-  http: "^0.13.3"
-  email_validator: "^1.0.6"
+  webview_flutter: ^2.0.10
+  http: ^0.13.3
+  email_validator: ^2.0.1
 
 dev_dependencies:
-  build_runner: ^1.11.0
+  build_runner: ^2.1.4
   flutter_test:
     sdk: flutter
-  mockito: ^4.0.0
+  mockito: ^5.0.16
 
 
 flutter:
