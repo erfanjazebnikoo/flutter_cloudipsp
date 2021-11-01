@@ -10,7 +10,7 @@ import './receipt.dart';
 abstract class CloudipspWebView extends Widget {
   factory CloudipspWebView(
       {Key key,
-      CloudipspWebViewConfirmation confirmation}) = CloudipspWebViewImpl;
+      CloudipspWebViewConfirmation? confirmation}) = CloudipspWebViewImpl;
 }
 
 class CloudipspWebViewImpl extends StatelessWidget implements CloudipspWebView {
@@ -29,16 +29,16 @@ class CloudipspWebViewImpl extends StatelessWidget implements CloudipspWebView {
   }
   })();''';
 
-  final PrivateCloudipspWebViewConfirmation _confirmation;
+  final PrivateCloudipspWebViewConfirmation? _confirmation;
 
-  CloudipspWebViewImpl({Key key, CloudipspWebViewConfirmation confirmation})
-      : _confirmation = confirmation as PrivateCloudipspWebViewConfirmation,
+  CloudipspWebViewImpl({Key? key, CloudipspWebViewConfirmation? confirmation})
+      : _confirmation = confirmation as PrivateCloudipspWebViewConfirmation?,
         super(key: key);
 
   void _onWebViewCreated(WebViewController controller) {
     if (_confirmation != null) {
       controller.evaluateJavascript(ADD_VIEWPORT_METADATA);
-      controller.loadUrl(Uri.dataFromString(_confirmation.response.body,
+      controller.loadUrl(Uri.dataFromString(_confirmation!.response.body,
               mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
           .toString());
     }
@@ -51,15 +51,15 @@ class CloudipspWebViewImpl extends StatelessWidget implements CloudipspWebView {
     var detectsApiToken = false;
 
     if (!detectsStartPattern) {
-      detectsCallbackUrl = url.startsWith(_confirmation.callbackUrl);
+      detectsCallbackUrl = url.startsWith(_confirmation!.callbackUrl);
       if (!detectsCallbackUrl) {
         detectsApiToken =
-            url.startsWith('${_confirmation.apiHost}/api/checkout?token=');
+            url.startsWith('${_confirmation!.apiHost}/api/checkout?token=');
       }
     }
 
     if (detectsStartPattern || detectsCallbackUrl || detectsApiToken) {
-      Receipt receipt;
+      Receipt? receipt;
       if (detectsStartPattern) {
         final jsonOfConfirmation = url.split(URL_START_PATTERN)[1];
         dynamic response;
@@ -70,7 +70,7 @@ class CloudipspWebViewImpl extends StatelessWidget implements CloudipspWebView {
         }
         receipt = Receipt.fromJson(response['params'], response['url']);
       }
-      _confirmation.completer.complete(receipt);
+      _confirmation!.completer.complete(receipt);
       return NavigationDecision.prevent;
     }
     return NavigationDecision.navigate;

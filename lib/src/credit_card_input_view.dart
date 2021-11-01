@@ -10,20 +10,20 @@ import './credit_card_input_layout.dart';
 
 class CreditCardInputView extends StatefulWidget {
   final bool _helperNeeded;
-  final InputDecoration _inputNumberDecoration;
-  final InputDecoration _inputExpMmDecoration;
-  final InputDecoration _inputExpYyDecoration;
-  final InputDecoration _inputCvvDecoration;
-  final InputDecoration _inputDecoration;
+  final InputDecoration? _inputNumberDecoration;
+  final InputDecoration? _inputExpMmDecoration;
+  final InputDecoration? _inputExpYyDecoration;
+  final InputDecoration? _inputCvvDecoration;
+  final InputDecoration? _inputDecoration;
 
   CreditCardInputView(
-      {Key key,
+      {Key? key,
       bool helperNeeded = false,
-      InputDecoration inputNumberDecoration,
-      InputDecoration inputExpMmDecoration,
-      InputDecoration inputExpYyDecoration,
-      InputDecoration inputCvvDecoration,
-      InputDecoration inputDecoration})
+      InputDecoration? inputNumberDecoration,
+      InputDecoration? inputExpMmDecoration,
+      InputDecoration? inputExpYyDecoration,
+      InputDecoration? inputCvvDecoration,
+      InputDecoration? inputDecoration})
       : _helperNeeded = helperNeeded,
         _inputNumberDecoration = inputNumberDecoration,
         _inputExpMmDecoration = inputExpMmDecoration,
@@ -54,22 +54,22 @@ class CreditCardInputViewState extends State<CreditCardInputView>
   ];
 
   final bool _helperNeeded;
-  final InputDecoration _inputNumberDecoration;
-  final InputDecoration _inputExpMmDecoration;
-  final InputDecoration _inputExpYyDecoration;
-  final InputDecoration _inputCvvDecoration;
-  final InputDecoration _inputDecoration;
+  final InputDecoration? _inputNumberDecoration;
+  final InputDecoration? _inputExpMmDecoration;
+  final InputDecoration? _inputExpYyDecoration;
+  final InputDecoration? _inputCvvDecoration;
+  final InputDecoration? _inputDecoration;
   final GlobalKey _creditCardInputLayoutKey = GlobalKey();
 
   int _currentHelpCardIndex = 0;
 
   CreditCardInputViewState(
       {bool helperNeeded = false,
-      InputDecoration inputNumberDecoration,
-      InputDecoration inputExpMmDecoration,
-      InputDecoration inputExpYyDecoration,
-      InputDecoration inputCvvDecoration,
-      InputDecoration inputDecoration})
+      InputDecoration? inputNumberDecoration,
+      InputDecoration? inputExpMmDecoration,
+      InputDecoration? inputExpYyDecoration,
+      InputDecoration? inputCvvDecoration,
+      InputDecoration? inputDecoration})
       : _helperNeeded = helperNeeded,
         _inputNumberDecoration = inputNumberDecoration,
         _inputExpMmDecoration = inputExpMmDecoration,
@@ -80,7 +80,7 @@ class CreditCardInputViewState extends State<CreditCardInputView>
   @override
   CreditCard getCard() {
     final creditCardInputLayoutState =
-        _creditCardInputLayoutKey.currentState as CreditCardInputLayoutState;
+        _creditCardInputLayoutKey.currentState as CreditCardInputLayoutState?;
     if (creditCardInputLayoutState == null) {
       throw StateError("CreditCardInputView hasn't been rendered yet");
     }
@@ -157,8 +157,8 @@ class CreditCardInputViewState extends State<CreditCardInputView>
         ));
   }
 
-  static InputDecoration _oneOf(
-      InputDecoration main, InputDecoration alternative) {
+  static InputDecoration? _oneOf(
+      InputDecoration? main, InputDecoration? alternative) {
     if (main != null) {
       return main;
     }
